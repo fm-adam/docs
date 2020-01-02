@@ -1,0 +1,41 @@
+### YamlMime:TableOfContent
+- name: Overview
+  href: overview.md
+- name: Guides
+  items:
+  - name: Calling
+    items:
+    - name: Calling
+      href: calling.md
+    - name: Answering a Call
+      href: Answering_a_Call.md
+    - name: Cancelling a Call
+      href: Cancelling_a_Call.md
+    - name: Holding and Resuming
+      href: Holding_Resuming.md
+    - name: Muting and Unmuting
+      href: Muting_Unmuting.md
+    - name: Toggle Video on Call
+      href: Toggle_Video_on_Call.md
+    - name: Upgrade an Audio Call to an Audio-Video Call
+      href: Upgrade_an_Audio_Call_to_an_Audio_Video_Call.md
+  - name: Conference
+    items:
+    - name: Joining a Conference
+      href: Joining_a_Conference.md
+    - name: Inviting to a Conference
+      href: Inviting_to_a_Conference.md
+    - name: Cancelling an Invite
+      href: Cancelling_an_Invite.md
+    - name: Kicking
+      href: Kicking.md
+    - name: Recording a Conference
+      href: Recording_a_Conference.md
+  - name: Files and Messaging
+    items:
+    - name: Sending a File
+      href: Sending_a_File.md
+    - name: Sending a Message
+      href: Sending_a_Message.md
+    - name: Sending a Video Message
+      href: Sending_a_Video_Message.md

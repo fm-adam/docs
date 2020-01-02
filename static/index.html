@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiveSwitch</title>
+</head>
+
+<body>
+    <div>
+        <h1 id="liveswitch">LiveSwitch</h1>
+        <ul>
+            <li><a href="net/">NET</a></li>
+            <li><a href="java/">Java</a></li>
+            <li><a href="cocoa/">Cocoa</a></li>
+            <li><a href="typescript/">TypeScript</a></li>
+        </ul>
+        <h2 id="what-is-liveswitch">What is LiveSwitch?</h2>
+        <p>LiveSwitch – using IceLink and WebSync as engines – extends peer-to-peer audio/video transmission with server-based audio/video capabilities for applications that require selective forwarding (SFU), mixing (MCU), recording, and telephony integration. From three participants to three hundred, LiveSwitch makes WebRTC- and SIP-compatible audio/video conferencing scalable, efficient and truly cross-platform.</p>
+        <p>LiveSwitch provides unparalleled flexibility to combine P2P-, SFU-, and MCU-based media flows in a single session and switch dynamically while the session is live.</p>
+        <img alt="IRTC Charts" src="img/frozen-mountain-irtc-charts.png">
+        <h2 id="why-use-liveswitch">Why use LiveSwitch?</h2>
+        <p>In addition to providing a full, cross-platform WebRTC stack, LiveSwitch offers a number of exclusive features that you will want in your application:</p>
+        <ul>
+            <li>token-based authentication</li>
+            <li>support for multiple simultaneous devices</li>
+            <li>powerful channel-based session management</li>
+            <li>P2P, MCU and SFU modes</li>
+            <li>SIP trunking</li>
+            <li>support for both H264 and VP8 codecs</li>
+            <li>presence management</li>
+            <li>REST API control</li>
+        </ul>
+        <p>LiveSwitch gives you the power to add these features to your application with a minimum of effort.</p>
+        <h3 id="selective-forwarding-for-video-conferencing">Selective Forwarding for Video Conferencing</h3>
+        <p>Unlike mesh peer-to-peer networks, selective forwarding use a one-up, many-down architecture that lets participants send their media once to the server where it is distributed out to connected downstream clients. A peer-to-peer architecture requires participants to upload their media several times - once for each remote peer.</p>
+        <p>This reduction in upstream bandwidth and client load means you can scale your application out much further on the client. Because the server forwards the media packets without decoding or re-encoding them, it also keeps the server load minimal, allowing you to make the most of each instance.</p>
+        <h3 id="mixing-for-multiparty-audio--video">Mixing for Multiparty Audio &amp; Video</h3>
+        <p>LiveSwitch also functions as a multipoint control unit, or MCU, and supports mixing audio and video together into a single stream based on standard or user-defined video templates.</p>
+        <p>With just one upload stream and one download stream for each call participant, this is especially useful for legacy and resource-constrained devices. The server handles all the mixing automatically, and the output of that stream is delivered to each user in the format their device requires.</p>
+        <h3 id="sip-connection-for-voippstn-integration">SIP Connection for VOIP/PSTN Integration</h3>
+        <p>LiveSwitch provides a <a href="https://help.frozenmountain.com/display/L1/Configuring+the+SIP+Connector">SIP connector</a> that can be used to directly access SIP trunks or integrate with VOIP/PSTN virtual PBXs such as FreeSwitch and Asterisk.</p>
+        <h3 id="recording-audiovideo-streams">Recording Audio/Video Streams</h3>
+        <p>LiveSwitch can record individual SFU or MCU upstreams to ffmpeg-compatible Matroska containers in real-time. These files can then undergo any post-processing required by your application to mix, modify, or archive.</p>
+        <h2 id="product-comparisons">Product Comparisons</h2>
+        <p>LiveSwitch, IceLink, WebSync - we know it’s hard to keep these separate. Here is a brief explanation of how each product fits into the Frozen Mountain product eco-system.</p>
+        <h3 id="liveswitch-vs-icelink">LiveSwitch vs IceLink</h3>
+        <p>IceLink is Frozen Mountain’s award winning WebRTC SDK that adds real-time streaming to your applications. It allows you to connect your users in peer to peer - or mesh - video conferences, which allows them to talk to each other with almost no involvement from your server. IceLink is primarily a client SDK, with some server components (such as a STUN/TURN relay server). Because of this, it is unopinionated when it comes to how you organize your server components and leaves it up to you to define the role that your server will play in your application.</p>
+        <p>LiveSwitch is a new product from Frozen Mountain that is powered by IceLink. LiveSwitch improves the capabilities of IceLink by providing a server component for you that works out of the box and scales with your client-side needs. LiveSwitch comes with its own fully-featured SFU and MCU modules, which allow you to scale up your video conferences to support more people than you could with IceLink. LiveSwitch also has built-in support for token-based authentication, application-specific roles and session management.</p>
+        <h3 id="liveswitch-vs-websync">LiveSwitch vs WebSync</h3>
+        <p>WebSync is Frozen Mountain’s real-time messaging SDK. WebSync enables pub-sub messaging for your entire application suite. It integrates tightly with IIS to provide real-time push data support for all major client platforms in use today and does not require any special firewall configuration. WebSync provides both a client SDK, and a server component and abstracts away all of the difficult communication logic.</p>
+        <p>LiveSwitch features a messaging layer that is powered by WebSync. In fact, LiveSwitch extends the WebSync SDK to support the operations that are required by its new features. The extended API combines the expressiveness of the IceLink SDK with the simplicity of the WebSync SDK and offers full support for WebSockets, cross-platform messaging, and all the features that you’ve come to expect from WebSync.</p>
+        <h2 id="do-you-have-a-demo">Do you have a demo?</h2>
+        <p>Yes! A demo is available online at <a href="https://v1.liveswitch.fm/">https://v1.liveswitch.fm</a>. Open up the demo in a few browser windows or ask some friends to help you out. Some commonly asked questions are answered below, or you can skip ahead to the next sections to learn how to download the SDK and try it out on your own machine.</p>
+        <h2 id="how-do-i-download-liveswitch">How do I download LiveSwitch?</h2>
+        <p>The LiveSwitch SDK is available for multiple platforms. For convenience’s sake, these are packaged together in a single download available at the <a href="https://www.frozenmountain.com/downloads#liveswitch">Downloads</a> page on our website.</p>
+        <h3 id="whats-in-the-download">What’s in the Download?</h3>
+        <p>Open the SDK archive, and you will see a list of files and folders. At the root is the LiveSwitch installer that can be deployed on your server or development environment. This executable can install the LiveSwitch Gateway, Media Server, SIP Connector, and Web Example. Using the installer can get you up and running with a full-blown working demo of LiveSwitch on both the server and client-side. Our <a href="https://help.frozenmountain.com/display/L1S/Server">Server documentation page</a> walks you through the installation process.</p>
+        <p>Also in the download, under the ClientSDK folder, you’ll find a list of folders, each named after a specific platform. Open the folder for your platform, and you will see both an <em>Examples</em> folder and a <em>Libraries</em> folder. There are no surprises here - the <em>Examples</em> folder contains source code for demos that you can use as a starting point to build your own apps, and the <em>Libraries</em> folder contains compiled binaries for the platform to include in your apps.</p>
+        <p>In the root of the archive, you can inspect the Change.log file for the latest release notes or the README file, which contains information on how to use the SDK.</p>
+        <h3 id="building-an-example">Building an Example</h3>
+        <p>In the <em>Examples</em> folder, under the ClientSDK folder, the <em>Chat</em> example demonstrates the core features of LiveSwitch, including how to switch between peer-to-peer, SFU and MCU modes. It also demonstrates how to perform token-based authentication, and how to send and display a chat message. To build the example, navigate to the folder for your platform and load the project in an appropriate IDE. For C#, use Visual Studio; for Java/Android use either IntelliJ or Android Studio; and for iOS/macOS, use Xcode.</p>
+        <p>If you prefer to see the demo in action before building it yourself, there is a public version of this example hosted at <a href="https://v1.liveswitch.fm/">https://v1.liveswitch.fm</a>.</p>
+        <p>Note that when you are running the Xamarin iOS example, you should make sure that the path of the example does not have any spaces. If you try to run this example from a path with spaces, the example will not build.</p>
+        <h2 id="what-platforms-does-liveswitch-support">What platforms does LiveSwitch support?</h2>
+        <p>LiveSwitch provides client SDKs for all modern platforms, with libraries written in C#, JavaScript, Java and Objective-C. We support Android, iOS, MacOS, almost any flavour of .NET, Windows 10, UWP (Desktop), Xamarin and a few other minor platforms. The LiveSwitch server components can run on Windows Servers with .NET-Core, or Linux.</p>
+        <h2 id="do-you-offer-support">Do you offer support?</h2>
+        <p>Yes! Do not hesitate to contact our enthusiastic support team, who are available to answer your questions at <a href="mailto:support@frozenmountain.com">support@frozenmountain.com</a> and <a href="https://support.frozenmountain.com/">https://support.frozenmountain.com</a>.</p>
+        <h2 id="does-liveswitch-support-webrtc">Does LiveSwitch support WebRTC?</h2>
+        <p>Yes! LiveSwitch’s network tunneling strategies are identical to the ones recommended by the WebRTC specification. LiveSwitch’s WebRTC implementation provides a complete audio/video/data-channel stack that is fully interoperable with other modern WebRTC implementations.</p>
+        <h2 id="does-liveswitch-support-ortc">Does LiveSwitch support ORTC?</h2>
+        <p>Yes! Microsoft Edge is fully supported with LiveSwitch. We support all ORTC APIs that are currently implemented in Edge and we provide seamless interoperability between ORTC and WebRTC browsers.</p>
+        <h2 id="does-liveswitch-support-internet-explorer">Does LiveSwitch support Internet Explorer?</h2>
+        <p>Yes! LiveSwitch is bundled with an ActiveX plugin for Internet Explorer users. This is tightly integrated with the JavaScript SDK so that the browser will automatically use the plugin if native WebRTC functionality is unavailable.</p>
+        <h2 id="does-liveswitch-support-safari">Does LiveSwitch support Safari?</h2>
+        <p>Yes! LiveSwitch fully supports plugin-free WebRTC communications in iOS 11+ and Safari 11+ for macOS High Sierra.</p>
+        <h2 id="third-party-dependencies">Third Party Dependencies</h2>
+        <h3 id="internal-dependencies">Internal Dependencies</h3>
+        <p>Libraries used in the core of LiveSwitch.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Library</th>
+                    <th>Vendor</th>
+                    <th>License</th>
+                    <th>Platform</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>BouncyCastle</td>
+                    <td>Open Source</td>
+                    <td><a href="http://www.bouncycastle.org/licence.html">MIT</a></td>
+                    <td>All except native iOS/macOS for DTLS encryption.</td>
+                </tr>
+                <tr>
+                    <td>libssl / libcrypto</td>
+                    <td>Open Source</td>
+                    <td><a href="https://www.openssl.org/source/license.txt">Apache 1.0 / BSD</a></td>
+                    <td>native iOS/macOS for DTLS encryption.</td>
+                </tr>
+                <tr>
+                    <td>SkiaSharp</td>
+                    <td>Xamarin</td>
+                    <td><a href="https://github.com/mono/SkiaSharp/blob/master/LICENSE.md">MIT</a></td>
+                    <td>.NET (Media Server) for video mixing.</td>
+                </tr>
+            </tbody>
+        </table><h3 id="external-dependencies">External Dependencies</h3>
+        <p>Libraries that are necessary for audio/video capture and processing.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Library</th>
+                    <th>Vendor</th>
+                    <th>License</th>
+                    <th>Platform</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>NAudio</td>
+                    <td>Open Source</td>
+                    <td><a href="https://github.com/naudio/NAudio/blob/master/license.txt">Ms-PL</a></td>
+                    <td>.NET for audio capture and playback.</td>
+                </tr>
+                <tr>
+                    <td><a href="http://AForge.NET">AForge.NET</a></td>
+                    <td>Open Source</td>
+                    <td><a href="http://www.aforgenet.com/framework/license.html">LGPL v3</a></td>
+                    <td>.NET for camera capture.</td>
+                </tr>
+                <tr>
+                    <td>Sarxos</td>
+                    <td>Open Source</td>
+                    <td><a href="https://github.com/sarxos/webcam-capture/blob/master/LICENSE.txt">MIT</a></td>
+                    <td>Java for camera capture.</td>
+                </tr>
+                <tr>
+                    <td>libvpx</td>
+                    <td>WebM Project</td>
+                    <td><a href="https://github.com/webmproject/libvpx/blob/master/LICENSE">New BSD</a></td>
+                    <td>All for video encoding/decoding.</td>
+                </tr>
+                <tr>
+                    <td>libopus</td>
+                    <td><a href="http://Xiph.Org">Xiph.Org</a></td>
+                    <td><a href="http://opus-codec.org/license/">BSD</a></td>
+                    <td>All for audio encoding/decoding.</td>
+                </tr>
+                <tr>
+                    <td>libaudioprocessing</td>
+                    <td>Google</td>
+                    <td><a href="https://webrtc.org/license/">BSD</a></td>
+                    <td>All except iOS/macOS for echo cancellation.</td>
+                </tr>
+                <tr>
+                    <td>libyuv</td>
+                    <td>Google</td>
+                    <td><a href="https://github.com/lemenkov/libyuv/blob/master/LICENSE">BSD</a></td>
+                    <td>All for YUV conversion.</td>
+                </tr>
+                <tr>
+                    <td><a href="1">libopenh264</a></td>
+                    <td>Cisco</td>
+                    <td><a href="https://www.openh264.org/BINARY_LICENSE.txt">Two-Clause BSD / AVC/H.264 Patent Portfolio License</a></td>
+                    <td>All except iOS/macOS for video encoding/decoding (downloaded at runtime).</td>
+                </tr>
+            </tbody>
+        </table><p>[1]: libopenh264 is <em><strong>not</strong></em> included, or shipped, in release artifacts. It is downloaded at runtime by clients that are configured to use software H.264.</p>
+        <h3 id="optional-dependencies">Optional Dependencies</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Library</th>
+                    <th>Vendor</th>
+                    <th>License</th>
+                    <th>Used By</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>log4net</td>
+                    <td>Apache</td>
+                    <td><a href="https://logging.apache.org/log4net/license.html">Apache 2.0</a></td>
+                    <td>.NET for logging.</td>
+                </tr>
+                <tr>
+                    <td><a href="http://Json.NET">Json.NET</a></td>
+                    <td>Newtonsoft</td>
+                    <td><a href="https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md">MIT</a></td>
+                    <td>.NET for JSON serialization.</td>
+                </tr>
+                <tr>
+                    <td>Redis</td>
+                    <td>Open Source</td>
+                    <td><a href="https://redis.io/topics/license">BSD</a></td>
+                    <td>LiveSwitch Gateway state provider.</td>
+                </tr>
+            </tbody>
+        </table><h2 id="references">References</h2>
+        <h3 id="api-documentation">API Documentation:</h3>
+        <p><a href="https://docs.frozenmountain.com/liveswitch/api/DotNet35/html/N_FM_LiveSwitch.htm">.NET</a></p>
+        <p><a href="https://docs.frozenmountain.com/liveswitch/api/Android/">Android</a></p>
+        <p><a href="https://docs.frozenmountain.com/liveswitch/api/Java/">Java</a></p>
+        <p><a href="https://docs.frozenmountain.com/liveswitch/api/Cocoa/">Cocoa</a></p>
+        <p><a href="https://docs.frozenmountain.com/liveswitch/api/typescript/">TypeScript</a></p>
+        <p><a href="https://docs.frozenmountain.com/liveswitch/api/xamarin/html/R_Project_Documentation.htm">Xamarin</a></p>
+        <p><a href="https://docs.frozenmountain.com/liveswitch/api/uwp/html/R_Project_Documentation.htm">UWP</a></p>
+        <h3 id="web-demo">Web Demo:</h3>
+        <ul>
+            <li><a href="https://demo.frozenmountain.com/">https://demo.frozenmountain.com</a></li>
+        </ul>
+        <h3 id="downloads">Downloads:</h3>
+        <ul>
+            <li><a href="https://www.frozenmountain.com/downloads#liveswitch">https://www.frozenmountain.com/downloads#liveswitch</a></li>
+        </ul>
+        <h3 id="buy-now">Buy now:</h3>
+        <ul>
+            <li><a href="https://www.frozenmountain.com/purchase#liveswitch">https://www.frozenmountain.com/purchase#liveswitch</a></li>
+        </ul>
+        <h2 id="frozen-mountain-support">Frozen Mountain Support</h2>
+        <ul>
+            <li>1.888.FRZN.MTN (379.6686)</li>
+            <li>EMAIL: <a href="mailto:support@frozenmountain.com">mailto:support@frozenmountain.com</a></li>
+            <li><a href="https://support.frozenmountain.com/">https://support.frozenmountain.com</a></li>
+        </ul>
+    </div>
+</body>
+
+</html>

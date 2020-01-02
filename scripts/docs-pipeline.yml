@@ -1,0 +1,109 @@
+trigger: none
+pr: none
+resources: 
+  pipelines:
+  - pipeline: ApiYaml
+    source: Build Api Yaml
+  repositories:
+  - repository: GitHubPages # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: github.com
+    name: frozenmountain/frozenmountain.github.io
+stages:
+- stage: Build
+  displayName: Build Documentation
+  jobs:
+  - job: Docfx
+    displayName: Build HTML
+    pool:
+      vmImage: windows-latest
+    steps:
+    - checkout: self
+
+    - script: choco install docfx
+      displayName: Install Docfx
+      
+    - download: ApiYaml
+      displayName: Download Yaml
+
+    - task: CopyFiles@2
+      displayName: Copy NET yaml
+      inputs:
+        sourceFolder: $(Pipeline.Workspace)/ApiYaml/LiveSwitch-Net-Yaml 
+        targetFolder: $(Build.SourcesDirectory)/docfx/api
+        cleanTargetFolder: true
+    - script: docfx docfx-net.json build --force -o $(Build.ArtifactStagingDirectory)
+      workingDirectory: $(Build.SourcesDirectory)/docfx
+      displayName: Build NET DocFX
+
+    - task: CopyFiles@2
+      displayName: Copy Cocoa yaml
+      inputs:
+        sourceFolder: $(Pipeline.Workspace)/ApiYaml/LiveSwitch-Cocoa-Yaml 
+        targetFolder: $(Build.SourcesDirectory)/docfx/api
+        cleanTargetFolder: true
+    - script: docfx docfx-cocoa.json build --force -t template -o $(Build.ArtifactStagingDirectory)
+      workingDirectory: $(Build.SourcesDirectory)/docfx
+      displayName: Build Cocoa DocFX
+
+    - task: CopyFiles@2
+      displayName: Copy Java yaml
+      inputs:
+        sourceFolder: $(Pipeline.Workspace)/ApiYaml/LiveSwitch-Java-Yaml 
+        targetFolder: $(Build.SourcesDirectory)/docfx/api
+        cleanTargetFolder: true
+    - script: docfx docfx-java.json build --force -o $(Build.ArtifactStagingDirectory)
+      workingDirectory: $(Build.SourcesDirectory)/docfx
+      displayName: Build Java DocFX
+
+    - task: CopyFiles@2
+      displayName: Copy Typescript yaml
+      inputs:
+        sourceFolder: $(Pipeline.Workspace)/ApiYaml/LiveSwitch-Typescript-Yaml 
+        targetFolder: $(Build.SourcesDirectory)/docfx/api
+        cleanTargetFolder: true
+    - script: docfx docfx-typescript.json build --force -o $(Build.ArtifactStagingDirectory)
+      workingDirectory: $(Build.SourcesDirectory)/docfx
+      displayName: Build Typescript DocFX
+
+    - task: CopyFiles@2
+      displayName: Copy static files
+      inputs:
+        sourceFolder: $(Build.SourcesDirectory)/static
+        targetFolder: $(Build.ArtifactStagingDirectory)
+
+    - publish: $(Build.ArtifactStagingDirectory)
+      displayName: Publish Site artifact
+      artifact: LiveSwitch-Site
+    
+- stage: deploy
+  displayName: Deploy Documentation
+  jobs:
+  - job: PublishDocs
+    displayName: Publish documentation
+    pool:
+      vmImage: windows-latest
+    steps:
+    - checkout: GitHubPages
+      persistCredentials: true
+    - download: current
+    - script: |
+       git config --global user.email "devops@frozenmountain.com"
+       git config --global user.name "Azure Devops"
+       git checkout master       
+      displayName: Setup git
+      workingDirectory: $(Build.SourcesDirectory)
+
+    - task: CopyFiles@2
+      displayName: Copy site
+      inputs:
+        sourceFolder: $(Pipeline.Workspace)/LiveSwitch-Site
+        targetFolder: $(Build.SourcesDirectory)
+        overWrite: true
+
+    - script: |
+        git add .
+        git commit -m "$(Build.BuildNumber)"
+        git push
+      displayName: Commit and Push
+      workingDirectory: $(Build.SourcesDirectory)
